@@ -46,6 +46,7 @@ def decrypt(filename):
 def getTextFile(path):
     files = dir(path)
     random_index = r.randint(0, len(files) - 1)
+    print(files[random_index])
     return path + "\\" + files[random_index]
 
 
@@ -54,3 +55,4 @@ directory = os.getcwd() + "\Input_Texts"
 filepath = getTextFile(directory)
 encrypt(filepath, shift)
 decrypt("encrypted.txt")
+print("decrypted.txt")
