@@ -13,7 +13,19 @@ foreach ($url in $urls) {
     if (-not $file.Contains(".txt")){
         $file = $file + ".txt"  
     }
+    $ProgressPreference = 'SilentlyContinue'   
     wget $url -OutFile ($directory + "\Input_Texts\" + $file)
 }
 
-python .\encrypt.py
+python .\encrypt.py > ($directory + "\output.txt")
+
+$file_data = Get-Content -Path ($directory + "\output.txt")
+
+foreach ($file in $file_data) {
+    $file = $file.Trim()
+}
+
+$original = (Get-Content ($directory + "\Input_Texts\" + $file_data[0])).ToLower()
+$decrypted = (Get-Content ($directory + "\" + $file_data[1])).ToLower()
+
+$ret = Compare-Object $original $decrypted
