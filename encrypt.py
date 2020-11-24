@@ -20,6 +20,7 @@ def encrypt(filename, shift):
 def decrypt(filename):
     letters = {}
     f = open(filename, "r")
+    f2 = open("decrypted.txt", "w")
     text = f.read()
     for letter in text:
         if letter.isalpha():
@@ -35,9 +36,9 @@ def decrypt(filename):
                     new_letter = chr((ord(letter) - diff) + 26)
                 else:
                     new_letter = chr((ord(letter) - shift))
-                print(new_letter, end = "")
+                f2.write(new_letter)
         else:
-            print(letter, end = "")   
+            f2.write(letter)   
     pass
 
 
