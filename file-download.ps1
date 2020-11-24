@@ -16,4 +16,4 @@ foreach ($url in $urls) {
     wget $url -OutFile ($directory + "\Input_Texts\" + $file)
 }
 
-#python .\encrypt.py
+python .\encrypt.py
