@@ -13,7 +13,7 @@ foreach ($url in $urls) {
     if (-not $file.Contains(".txt")){
         $file = $file + ".txt"  
     }
-    wget $url -OutFile $directory/$file
+    wget $url -OutFile ($directory + "\Input_Texts\" + $file)
 }
 
-python .\encrypt.py
+#python .\encrypt.py
