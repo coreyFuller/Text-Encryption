@@ -1,8 +1,9 @@
 import random as r
+import os
 from os import listdir as dir
 
-def encrypt(filename, shift):
-    f1 = open(filename, "r")
+def encrypt(filepath, shift):
+    f1 = open(filepath, "r")
     f2= open("encrypted.txt", "w")
     word = f1.read().lower()
     for letter in word:
@@ -42,13 +43,14 @@ def decrypt(filename):
     pass
 
 
-def getTextFile():
-    files = [ x for x in dir() if ".txt" in x]
+def getTextFile(path):
+    files = dir(path)
     random_index = r.randint(0, len(files) - 1)
-    return files[random_index]
+    return path + "\\" + files[random_index]
 
 
 shift = r.randint(3, 11)
-filename = getTextFile()
-encrypt(filename, shift)
+directory = os.getcwd() + "\Input_Texts"
+filepath = getTextFile(directory)
+encrypt(filepath, shift)
 decrypt("encrypted.txt")
